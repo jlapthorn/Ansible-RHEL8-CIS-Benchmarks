@@ -2,6 +2,17 @@
 ---
 
 # 3.4.4 Ensure permissions on /etc/hosts.allow are configured
+- name: 3.4.4 - Ensure permissions on /etc/hosts.allow are configured
+  stat:
+    path: "/etc/hosts.allow"
+  register: result
+  tags:
+    - level-1
+    - section-3
+    - "3.4.4"
+    - scored
+
+
 
 - name: 3.4.4 - Ensure permissions on /etc/hosts.allow are configured
   file:
@@ -9,6 +20,7 @@
     owner: root
     group: root
     mode: 0644
+  when: result.stat.exists == true
   tags:
     - level-1
     - section-3

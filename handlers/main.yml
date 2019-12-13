@@ -32,4 +32,5 @@
 - name: Restart auditd
   service:
     name: auditd
+    use: service
     state: reloaded

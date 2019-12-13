@@ -2,6 +2,16 @@
 ---
 
 # 3.4.5 Ensure permissions on /etc/hosts.deny are configured
+- name: 3.4.5 - Ensure permissions on /etc/hosts.deny are configured
+  stat: 
+    path: "/etc/hosts.deny"
+  register: result
+  tags:
+    - level-1
+    - section-3
+    - "3.4.5"
+    - scored
+  
 
 - name: 3.4.5 - Ensure permissions on /etc/hosts.deny are configured
   file:
@@ -9,6 +19,7 @@
     owner: root
     group: root
     mode: 0644
+  when: result.stat.exists == true
   tags:
     - level-1
     - section-3
